@@ -32,5 +32,5 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        screen.fill(random_colors[1])      
+        screen.fill(colors[1])      
         pygame.display.update()

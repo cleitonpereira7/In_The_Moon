@@ -1,6 +1,6 @@
 import pygame, random
 
-random_colors = [(139, 0, 0),
+colors = [(139, 0, 0),
           (139, 232, 0),
           (239, 132, 2),
           (239, 232, 122)]
