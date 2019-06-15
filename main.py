@@ -16,7 +16,7 @@ try:
 except:
     print('Erro inicialização de módulos.')
 
-size = width, height = 800, 600
+size = width, height = 1366, 768
 screen = pygame.display.set_mode(size)
 running = True
 
@@ -24,7 +24,7 @@ running = True
 icon = pygame.image.load('_images/rocket.png')
 
 # Title and Icon
-pygame.display.set_caption('Space Robot')
+pygame.display.set_caption('In The Moon')
 pygame.display.set_icon(icon)
 
 while running:
@@ -32,5 +32,5 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        screen.fill(colors[1])      
+        screen.fill(colors[0])      
         pygame.display.update()
