@@ -7,10 +7,10 @@ icon = pygame.image.load('_images/rocket.png')
 bg_initial = pygame.image.load('_images/b_bg.png')
 
 # ========================== Importa os arquivos de dados ja prontos com os numeros de cada posição ========================== #
-with open('data/tilemap.txt', 'rb') as pickle_file:
+with open('_data/tilemap.txt', 'rb') as pickle_file:
     tilemap = cPickle.load(pickle_file)
 
-with open('data/objmap.txt', 'rb') as pickle_file:
+with open('_data/objmap.txt', 'rb') as pickle_file:
     objmap = cPickle.load(pickle_file)
 
 # ========================== Adiciona cada imagem em uma posição de vetor ========================== #
