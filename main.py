@@ -50,62 +50,32 @@ def handle():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:                       
             running = False
+
         if event.type == pygame.KEYDOWN:                    
             if event.key == pygame.K_ESCAPE: 
                 running = False
 
-        # if event.type == pygame.KEYDOWN:
-        #     if event.key == pygame.K_a:
-        #         left = True
-        #         right = False
-        #         up = False
-        #         down = False
+        if event.type == pygame.KEYDOWN:
+            if event.key in MOVES.keys():
+                moving = (moving[0] + MOVES[event.key][0],
+                          moving[1] + MOVES[event.key][1])
 
-        if event.type == KEYDOWN:
+        if event.type == pygame.KEYUP:
             if event.key in MOVES.keys():
-                moving = (moving[0] + MOVES[event.key][0], moving[1] + MOVES[event.key][1])	
-        if event.type == KEYUP:
-            if event.key in MOVES.keys():
-                moving = (moving[0] - MOVES[event.key][0], moving[1] - MOVES[event.key][1])
+                moving = (moving[0] - MOVES[event.key][0],
+                          moving[1] - MOVES[event.key][1])
+                
         if event.type == GOTO:
             goto(event.x, event.y)
 
         elif event.type == SETOBJECT:
             objmap[event.x][event.y] = event.obj
 
-        # elif event.type == pygame.KEYDOWN:    
-        #     if event.key == pygame.K_d:
-        #         right = True
-        #         left = False
-        #         up = False
-        #         down = False
-
-#         if e.type == pygame.KEYDOWN: 
-#             if e.key == pygame.K_w:
-#                 up = True
-#                 right = False
-#                 left = False
-#                 down = False
-
-#         if e.type == pygame.KEYDOWN: 
-#             if e.key == pygame.K_s:
-#                 down = True
-#                 right = False
-#                 left = False
-#                 up = False
-
-#         else:
-#             left = False
-#             right = False
-#             up = False
-#             down = False
-#             walkcont = 0
-
 def goto(x, y):
 	global slide_x, slide_y
 	slide_x = x - MIDDLE[0]
 	slide_y = y - MIDDLE[1]
-	pygame.display.set_caption("MMORPG Client - Pos: %2d, %2d"%(x, y))
+	pygame.display.set_caption(f"MMORPG Client - Pos: {int(x)}, {int(y)}")
 
 def move(inc_x, inc_y):
 	if inc_x != 0 or inc_y != 0:
@@ -119,25 +89,30 @@ MOVES = {
     K_DOWN : (0, 1)
 }
 
-def redrawGameWindow():
-    global walkcont, speed, p_x, p_y
 
+def animation():
+    global walkcont, p_x, p_y
+    
     if walkcont + 1 >= 9:
         walkcont = 0
 
     if left:
+        p_x -= speed
         screen.blit(walk_left[walkcont//3], [p_x, p_y])
         walkcont += 1
     
     elif right:
+        p_x += speed
         screen.blit(walk_right[walkcont//3], [p_x, p_y])
         walkcont += 1
     
     elif up:
+        p_y -= speed
         screen.blit(walk_up[walkcont//3], [p_x, p_y])
-        walkcont += 1
-    
+        walkcont += 1   
+
     elif down:
+        p_y += speed
         screen.blit(walk_front[walkcont//3], [p_x, p_y])
         walkcont += 1
     
@@ -146,20 +121,15 @@ def redrawGameWindow():
 
     pygame.display.update()
         
-       
-
-        
-# # ========================== Titulo e Icone ========================== #
-pygame.display.set_caption('In The Moon')
+# # ========================== Icone ========================== #
 pygame.display.set_icon(icon)
 
 # ========================== Main ========================== #
 while running: 
     clock.tick(fps)
     handle()
-    redrawGameWindow()
     move(moving[0], moving[1])
-    
+    pygame.display.update()
     for y in range(HEIGHT):
         for x in range(WIDTH):
             i, j = (int(slide_x) + x, int(slide_y) + y)
@@ -169,7 +139,6 @@ while running:
             i, j = (x + int(slide_x), int(slide_y) + y)
             if objmap[j][i] < 24:
                 screen.blit(obj[objmap[j][i]], (x*TILE, y*TILE))
-      
 # ==========================  ========================== #
 
 
