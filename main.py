@@ -140,5 +140,3 @@ while running:
             if objmap[j][i] < 24:
                 screen.blit(obj[objmap[j][i]], (x*TILE, y*TILE))
 # ==========================  ========================== #
-
-
