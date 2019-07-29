@@ -1,7 +1,6 @@
 ### **In The Moon**
 
-> Jogo criado com finalidade de aprendizagem do Python e sua biblioteca PyGame. Feito para entrega final da disciplina de algoritmos.
-
+> Jogo criado com finalidade de aprendizagem do Python e sua biblioteca PyGame.
 ![1](https://user-images.githubusercontent.com/31069290/60271686-2bab3600-98c9-11e9-9300-f33b60bcfad9.png)
 > Tela inicial do jogo com menu.
 
